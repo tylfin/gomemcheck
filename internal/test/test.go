@@ -19,13 +19,13 @@ func MemLeak() {
 // collector.
 func MemSafe() {
 	t := time.NewTicker(tickTime)
-	defer t.Stop()
+	// defer t.Stop()
 
 	select {
 	case <-t.C:
 		// Setting the reference count to 0 should accelerate the time to garbage collection.
-		t = nil
+		// t = nil
+
 		return
 	}
-
 }

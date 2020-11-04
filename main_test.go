@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -19,14 +20,16 @@ func (m *MockTB) Fail() {
 	return
 }
 
-func (m *MockTB) Log(args ...interface{}) {}
+func (m *MockTB) Log(args ...interface{}) {
+	fmt.Println(args...)
+}
 
 func TestVerifyNoLeak(t *testing.T) {
-	t.Skip("runtime/proc is being detected as not cleaned up")
+	t.Skip("¯\\_(ツ)_/¯")
 	// TestVerifyNoLeak should always pass given that MemSafe(...) properly cleans itself up
 	m := &MockTB{}
 	test.MemSafe()
-	Verify(t)
+	Verify(m)
 
 	assert.Equal(t, m.calledFail, false)
 }
@@ -34,7 +37,7 @@ func TestVerifyNoLeak(t *testing.T) {
 func TestVerifyLeak(t *testing.T) {
 	m := &MockTB{}
 	test.MemLeak()
-	Verify(t)
+	Verify(m)
 
-	assert.Equal(t, m.calledFail, false)
+	assert.Equal(t, m.calledFail, true)
 }

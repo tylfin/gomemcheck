@@ -5,6 +5,7 @@ import (
 	"io"
 	"io/ioutil"
 	"runtime"
+	"runtime/debug"
 	"runtime/pprof"
 	"strings"
 	"testing"
@@ -14,8 +15,11 @@ import (
 
 var IgnoreEntryRecords = []string{
 	// By default, Check should ignore anything on the heap that it's allocated
-	"gomemcheck/internal.Check",
+	"gomemcheck/internal",
+	"gomemcheck.Verify",
 	"runtime/pprof",
+	"runtime.systemstack",
+	"testing.tRunner",
 }
 
 // StackRecord stores the information for each goroutine's heap profile
@@ -69,8 +73,10 @@ func Check(t testing.TB) bool {
 func getStackRecords() ([]StackRecord, error) {
 	// Run the garbage collector twice and set MemProfileRate to get latest, and maximum
 	// amount of information about the current heap allocations
+	debug.SetGCPercent(100)
 	runtime.GC()
 	runtime.GC()
+	debug.FreeOSMemory()
 	runtime.MemProfileRate = 1
 
 	stackRecords := []StackRecord{}
@@ -92,6 +98,7 @@ func getStackRecords() ([]StackRecord, error) {
 		if err != nil {
 			return nil, errors.Wrap(err, "could not properly read the heap profile")
 		}
+		reader.Close()
 
 		stacks := strings.Split(string(b)[1:], "# runtime.MemStats")[0]
 		for _, stack := range strings.Split(stacks, "\n\n") {
@@ -129,14 +136,14 @@ func getStackRecords() ([]StackRecord, error) {
 				}
 
 				stackRecord.FrameRecords = append(stackRecord.FrameRecords, frameRecord)
+			skip:
 			}
 
-			if stackRecord.Info == "" {
+			if stackRecord.Info == "" || len(stackRecord.FrameRecords) <= 1 {
 				continue
 			}
 
 			stackRecords = append(stackRecords, stackRecord)
-		skip:
 		}
 	}
 
