@@ -3,6 +3,7 @@
 [![MIT license](https://img.shields.io/badge/License-MIT-blue.svg)](https://lbesson.mit-license.org/)
 ![Go](https://github.com/tylfin/gomemcheck/workflows/Go/badge.svg)
 [![Go Report Card](https://goreportcard.com/badge/github.com/tylfin/gomemcheck)](https://goreportcard.com/report/github.com/tylfin/gomemcheck)
+![CodeQL](https://github.com/tylfin/gomemcheck/workflows/CodeQL/badge.svg)
 
 Go memory leak detector to help avoid memory leaks. This is currently an experimental package under development based
 off similar goroutine leak packages.
