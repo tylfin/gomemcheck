@@ -19,3 +19,7 @@ func CheckMemory() (alloc, totalAlloc, sys string, gc uint32) {
 	gc = m.NumGC
 	return
 }
+
+func main() {
+	CheckMemory()
+}
