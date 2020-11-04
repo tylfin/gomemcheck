@@ -1,7 +1,6 @@
 package main
 
 import (
-	"fmt"
 	"gomemcheck/test"
 	"testing"
 
@@ -17,12 +16,6 @@ type MockTB struct {
 func (m *MockTB) Fail() {
 	m.calledFail = true
 	return
-}
-
-func TestCheckMemory(t *testing.T) {
-	alloc, totalAlloc, sys, gc := CheckMemory()
-	assert.Equal(t, gc >= 0, true)
-	fmt.Println(alloc, totalAlloc, sys)
 }
 
 func TestVerifyNoLeak(t *testing.T) {
