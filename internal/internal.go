@@ -11,6 +11,7 @@ import (
 	"code.cloudfoundry.org/bytefmt"
 )
 
+// The heap dump format is defined at: https://github.com/golang/go/wiki/heapdump15-through-heapdump17
 const goheap17 = "go1.7 heap dump"
 
 func Check(t testing.TB) {
