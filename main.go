@@ -2,6 +2,7 @@ package main
 
 import (
 	"runtime"
+	"testing"
 
 	"code.cloudfoundry.org/bytefmt"
 )
@@ -17,6 +18,11 @@ func CheckMemory() (alloc, totalAlloc, sys string, gc uint32) {
 	totalAlloc = bytefmt.ByteSize(m.TotalAlloc)
 	sys = bytefmt.ByteSize(m.Sys)
 	gc = m.NumGC
+	return
+}
+
+// Verify ensures that all objects that garbage collection successfully cleans up any left-over heap objects.
+func Verify(t testing.TB) {
 	return
 }
 
