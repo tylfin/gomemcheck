@@ -1,8 +1,9 @@
 package main
 
 import (
-	"gomemcheck/internal"
 	"testing"
+
+	"gomemcheck/internal"
 )
 
 // Verify ensures that all objects that garbage collection successfully cleans up any left-over heap objects.

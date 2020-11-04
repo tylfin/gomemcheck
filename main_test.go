@@ -1,10 +1,11 @@
 package main
 
 import (
-	"gomemcheck/internal/test"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
+
+	"gomemcheck/internal/test"
 )
 
 // MockTB records if Verify successfully calls the Fail() function when a memleak is present
