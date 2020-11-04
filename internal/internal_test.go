@@ -7,5 +7,5 @@ import (
 )
 
 func TestCheckMemory(t *testing.T) {
-	assert.NotPanics(t, func() { CheckMemory() })
+	assert.NotPanics(t, func() { Check(t) })
 }
