@@ -1,4 +1,4 @@
-module gomemchecker
+module gomemcheck
 
 go 1.15
 

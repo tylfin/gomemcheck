@@ -2,7 +2,7 @@ package main
 
 import (
 	"fmt"
-	"gomemchecker/test"
+	"gomemcheck/test"
 	"testing"
 
 	"github.com/stretchr/testify/assert"
@@ -30,6 +30,9 @@ func TestVerifyNoLeak(t *testing.T) {
 	m := &MockTB{}
 	test.MemSafe()
 	Verify(m)
+
+	t.Logf("Memory leak detected: ")
+	t.Fail()
 
 	assert.Equal(t, m.calledFail, false)
 }
