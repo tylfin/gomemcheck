@@ -1,6 +1,5 @@
 # code.cloudfoundry.org/bytefmt v0.0.0-20200131002437-cf55d5288a48
 ## explicit
-code.cloudfoundry.org/bytefmt
 # github.com/davecgh/go-spew v1.1.1
 ## explicit
 github.com/davecgh/go-spew/spew
@@ -8,6 +7,9 @@ github.com/davecgh/go-spew/spew
 ## explicit
 # github.com/onsi/gomega v1.10.3
 ## explicit
+# github.com/pkg/errors v0.9.1
+## explicit
+github.com/pkg/errors
 # github.com/pmezard/go-difflib v1.0.0
 github.com/pmezard/go-difflib/difflib
 # github.com/stretchr/testify v1.6.1

@@ -1,6 +1,8 @@
 package test
 
-import "time"
+import (
+	"time"
+)
 
 const tickTime = time.Second
 
@@ -21,6 +23,8 @@ func MemSafe() {
 
 	select {
 	case <-t.C:
+		// Setting the reference count to 0 should accelerate the time to garbage collection.
+		t = nil
 		return
 	}
 
