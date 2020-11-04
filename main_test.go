@@ -31,9 +31,6 @@ func TestVerifyNoLeak(t *testing.T) {
 	test.MemSafe()
 	Verify(m)
 
-	t.Logf("Memory leak detected: ")
-	t.Fail()
-
 	assert.Equal(t, m.calledFail, false)
 }
 
